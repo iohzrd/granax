@@ -9,15 +9,14 @@
     "test-suite": "mocha test/** --recursive",
     "coverage": "istanbul cover _mocha -- --recursive",
     "linter": "eslint index.js lib test",
-    "generate-docs": "mkdir -p ./jsdoc && rm -r ./jsdoc && jsdoc index.js lib -r -R README.md -u ./doc -c .jsdoc.json --verbose -d ./jsdoc",
-    "deploy-docs": "gh-pages -d jsdoc --repo git@github.com:bookchin/granax.git"
+    "generate-docs": "mkdir -p ./jsdoc && rm -r ./jsdoc && jsdoc index.js lib -r -R README.md -u ./doc -c .jsdoc.json --verbose -d ./jsdoc"
   },
   "engines": {
     "node": "^8.9.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bookchin/granax.git"
+    "url": "https://gitlab.com/bookchin/granax.git"
   },
   "keywords": [
     "tor",
@@ -36,15 +35,14 @@
   "author": "Gordon Hall <gordonh@member.fsf.org>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/bookchin/granax/issues"
+    "url": "https://gitlab.com/bookchin/granax/issues"
   },
-  "homepage": "https://github.com/bookchin/granax#readme",
+  "homepage": "https://gitlab.com/bookchin/granax#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.13.0",
     "eslint": "^3.19.0",
-    "gh-pages": "^0.12.0",
-    "ink-docstrap": "github:bookchin/docstrap",
+    "ink-docstrap": "git+https://gitlab.com/bookchin/docstrap.git",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
