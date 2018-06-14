@@ -1,7 +1,5 @@
-![Granax](https://nodei.co/npm/granax.png?downloads=true)
-=========================================================
-
-[![NPM](https://img.shields.io/npm/v/granax.svg?style=flat-square)](https://www.npmjs.com/package/granax)
+Granax
+======
 
 Complete client implementation of the [Tor Control Protocol](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt). 
 Control a running Tor instance from Node.js!
@@ -60,9 +58,9 @@ tor.on('ready', function() {
 Resources
 ---------
 
-* [Granax Source](https://github.com/bookchin/granax)
-* [Granax Examples](https://github.com/bookchin/granax/tree/master/examples)
-* [Granax Documentation](http://bookch.in/granax)
+* [Granax Source](https://gitlab.com/bookchin/granax)
+* [Granax Examples](https://gitlab.com/bookchin/granax/tree/master/examples)
+* [Granax Documentation](https://bookchin.gitlab.io/granax)
 * [Tor Control Specification](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt)
 * [Tor Documentation](https://www.torproject.org/docs/documentation.html.en)
 
