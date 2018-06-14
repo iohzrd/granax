@@ -22,7 +22,7 @@ pages:
     - npm run generate-docs
   artifacts:
     paths:
-      - jsdoc
+    - jsdoc
   only:
     - master
 
