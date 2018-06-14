@@ -9,7 +9,7 @@
     "test-suite": "mocha test/** --recursive",
     "coverage": "istanbul cover _mocha -- --recursive",
     "linter": "eslint index.js lib test",
-    "generate-docs": "mkdir -p ./jsdoc && rm -r ./jsdoc && jsdoc index.js lib -r -R README.md -u ./doc -c .jsdoc.json --verbose -d ./jsdoc"
+    "generate-docs": "mkdir -p ./public && rm -r ./public && jsdoc index.js lib -r -R README.md -u ./doc -c .jsdoc.json --verbose -d ./public"
   },
   "engines": {
     "node": "^8.9.0"
