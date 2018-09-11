@@ -58,7 +58,7 @@ module.exports = function(options, torrcOptions) {
         return setTimeout(() => connect(), 1000);
       } else {
         return controller.emit('error',
-                               new Error('Failed to read control port'));
+          new Error('Failed to read control port'));
       }
     }
 
@@ -90,7 +90,7 @@ module.exports.tor = function(platform) {
       break;
     case 'darwin':
       torpath = path.join(BIN_PATH, '.tbb.app', 'Contents', 'Resources',
-                          'TorBrowser', 'Tor', 'tor');
+        'TorBrowser', 'Tor', 'tor');
       break;
     case 'android':
     case 'linux':

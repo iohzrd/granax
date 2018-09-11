@@ -1,6 +1,6 @@
 {
   "name": "granax",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "complete client implementation of the tor control protocol",
   "main": "index.js",
   "scripts": {
@@ -40,12 +40,12 @@
   "homepage": "https://gitlab.com/bookchin/granax#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.13.0",
-    "eslint": "^3.19.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.5.0",
     "ink-docstrap": "git+https://gitlab.com/bookchin/docstrap.git",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.3",
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "proxyquire": "^1.7.11",
     "sinon": "^2.1.0"
   },

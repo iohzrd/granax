@@ -84,8 +84,9 @@ describe('@module:granax/commands', function() {
       });
 
       it('should return add onion message with correct vport', function() {
-        expect(commands.ADD_ONION('127.0.0.1:8080',
-                                  {virtualPort: 8080})).to.equal(
+        expect(commands.ADD_ONION('127.0.0.1:8080',{
+          virtualPort: 8080
+        })).to.equal(
           'ADD_ONION NEW:BEST Port=8080,127.0.0.1:8080'
         );
       });

@@ -123,7 +123,7 @@ exports._unpackMacintosh = function(bundle, callback) {
     }
 
     ncp.ncp(
-      path.join(BIN_DIR, '.tbb', 'TorBrowser.app'),
+      path.join(BIN_DIR, '.tbb', 'Tor Browser.app'),
       path.join(BIN_DIR, '.tbb.app'),
       (err) => {
         if (err) {
