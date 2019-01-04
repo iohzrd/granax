@@ -58,9 +58,9 @@ tor.on('ready', function() {
 Resources
 ---------
 
-* [Granax Source](https://gitlab.com/bookchin/granax)
-* [Granax Examples](https://gitlab.com/bookchin/granax/tree/master/examples)
-* [Granax Documentation](https://bookchin.gitlab.io/granax)
+* [Granax Source](https://gitlab.com/allcomputersarebroken/granax)
+* [Granax Examples](https://gitlab.com/allcomputersarebroken/granax/tree/master/examples)
+* [Granax Documentation](https://allcomputersarebroken.gitlab.io/granax)
 * [Tor Control Specification](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt)
 * [Tor Documentation](https://www.torproject.org/docs/documentation.html.en)
 
