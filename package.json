@@ -1,6 +1,6 @@
 {
   "name": "granax",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "complete client implementation of the tor control protocol",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "generate-docs": "mkdir -p ./public && rm -r ./public && jsdoc index.js lib -r -R README.md -u ./doc -c .jsdoc.json --verbose -d ./public"
   },
   "engines": {
-    "node": "^8.9.0"
+    "node": ">=8.9.0"
   },
   "repository": {
     "type": "git",
