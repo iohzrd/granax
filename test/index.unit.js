@@ -36,7 +36,7 @@ describe('@module granax', function() {
         readFileSync: _readFileSync
       }
     });
-    sandbox.stub(granax, 'tor');
+    sandbox.stub(granax, 'tor').returns('tor');
     let tor = null;
 
     before(() => tor = granax());
