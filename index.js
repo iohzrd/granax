@@ -29,13 +29,16 @@ module.exports = function(options, torrcOptions) {
   let socket = new Socket();
   let controller = new module.exports.TorController(socket, options);
   let [torrc, datadir] = module.exports.torrc(torrcOptions);
-  let tor = module.exports.tor(platform());
+
+  let exe = path.basename(module.exports.tor(platform()));
+  let tor = path.join(BIN_PATH, 'Tor', exe);
+
   let args = process.env.GRANAX_TOR_ARGS
     ? process.env.GRANAX_TOR_ARGS.split(' ')
     : [];
   let child = spawn(tor, ['-f', torrc].concat(args), {
     cwd: BIN_PATH,
-    env: { LD_LIBRARY_PATH }
+    env: { LD_LIBRARY_PATH: path.join(BIN_PATH, 'Tor') }
   });
   let portFileReads = 0;
 

@@ -10,6 +10,11 @@ const os = require('os');
 const { tor: getTorPath } = require('..');
 const getLatestTorBrowserVersion = require('latest-torbrowser-version');
 const BIN_DIR = path.join(__dirname, '../bin');
+const rimraf = require('rimraf');
+const mv = require('mv');
+const granax = require('../index');
+const ProgressBar = require('progress');
+const { Transform } = require('stream');
 
 
 /**
@@ -65,7 +70,20 @@ exports.downloadTorBrowserBundle = function(link, target, callback) {
         'Failed to download Tor Bundle, status code: ' + res.statusCode
       ));
     } else {
-      res.pipe(fs.createWriteStream(target))
+      const len = parseInt(res.headers['content-length'], 10);
+      const progress = new ProgressBar('[:bar] :rate/bps :percent :etas', {
+        complete: '=',
+        incomplete: ' ',
+        width: 20,
+        total: len
+      });
+
+      res.pipe(new Transform({
+        transform: (data, enc, cb) => {
+          progress.tick(data.length);
+          cb(null, data);
+        }
+      })).pipe(fs.createWriteStream(target))
         .on('finish', callback)
         .on('error', callback);
     }
@@ -210,7 +228,47 @@ exports.install = function(callback) {
         }
 
         console.log(`Unpacking Tor Bundle into ${BIN_DIR}...`);
-        exports.unpackTorBrowserBundle(basename, callback);
+        exports.unpackTorBrowserBundle(basename, (err, bin) => {
+          if (err) {
+            return callback(err);
+          }
+
+          if (process.env.GRANAX_TOR_VERSION) {
+            return callback(null, bin);
+          }
+
+          const source = path.dirname(granax.tor(os.platform()));
+          const dest = path.join(BIN_DIR, 'Tor');
+
+          console.log(`Moving tor binary and libs to ${dest}...`);
+          mv(source, dest, (err) => {
+            if (err) {
+              return callback(err);
+            }
+
+            console.log('Cleaning up...');
+            rimraf.sync(granax.tor(os.platform()));
+            rimraf.sync(basename);
+
+            switch (os.platform()) {
+              case 'win32':
+                rimraf.sync(path.join(BIN_DIR, 'Browser'));
+                break;
+              case 'darwin':
+                rimraf.sync(path.join(BIN_DIR, '.tbb.app'));
+                break;
+              case 'android':
+              case 'linux':
+                rimraf.sync(path.join(BIN_DIR, 'tor-browser_en-US'));
+                break;
+              default:
+            }
+
+            callback(null, path.join(BIN_DIR, 'Tor', path.basename(
+              granax.tor(os.platform())
+            )));
+          });
+        });
       });
     }
   );
