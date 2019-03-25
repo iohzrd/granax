@@ -32,13 +32,19 @@ module.exports = function(options, torrcOptions) {
 
   let exe = path.basename(module.exports.tor(platform()));
   let tor = path.join(BIN_PATH, 'Tor', exe);
+  let env = { LD_LIBRARY_PATH: path.join(BIN_PATH, 'Tor') };
+
+  if (process.env.GRANAX_USE_SYSTEM_TOR && process.platform === 'linux') {
+    tor = exe;
+    env = {};
+  }
 
   let args = process.env.GRANAX_TOR_ARGS
     ? process.env.GRANAX_TOR_ARGS.split(' ')
     : [];
   let child = spawn(tor, ['-f', torrc].concat(args), {
     cwd: BIN_PATH,
-    env: { LD_LIBRARY_PATH: path.join(BIN_PATH, 'Tor') }
+    env
   });
   let portFileReads = 0;
 
