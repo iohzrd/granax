@@ -257,7 +257,7 @@ exports.install = function(callback) {
               case 'darwin':
                 let torReal = path.join(
                   path.dirname(granax.tor(os.platform())),
-                  '../../../MacOS/Tor/tor.real'
+                  '../../../MacOS/Tor/*'
                 );
                 mv(torReal, path.join(dest, 'tor.real'), (err) => {
                   rimraf.sync(path.join(BIN_DIR, '.tbb.app'));
