@@ -1,6 +1,6 @@
 {
   "name": "@deadcanaries/granax",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "complete client implementation of the tor control protocol",
   "main": "index.js",
   "scripts": {
