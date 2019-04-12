@@ -81,7 +81,7 @@ describe('@module granax', function() {
 
     it('should return the macintosh path', function() {
       expect(granax.tor('darwin').includes(
-        'bin/.tbb.app/Contents/Resources/TorBrowser/Tor/tor'
+        'bin/.tbb.app/Contents/MacOS/Tor/tor.real'
       )).to.equal(true);
     });
 

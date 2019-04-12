@@ -30,6 +30,19 @@ describe('@module:granax/replies', function() {
     it('should return auth, protocol, version', function() {
       let result = replies.PROTOCOLINFO([
         'PROTOCOL 1',
+        'AUTH METHODS=COOKIE,SAFECOOKIE COOKIEFILE=/path/to/cookie with/space',
+        'VERSION Tor="0.2.9.10"'
+      ]);
+      expect(result.protocol).to.equal('1');
+      expect(result.version.tor).to.equal('0.2.9.10');
+      expect(result.auth.methods[0]).to.equal('COOKIE');
+      expect(result.auth.methods[1]).to.equal('SAFECOOKIE');
+      expect(result.auth.cookieFile).to.equal('/path/to/cookie with/space');
+    });
+
+    it('should return auth, protocol, version', function() {
+      let result = replies.PROTOCOLINFO([
+        'PROTOCOL 1',
         'AUTH METHODS=COOKIE,SAFECOOKIE COOKIEFILE=/path/to/cookie',
         'VERSION Tor="0.2.9.10"'
       ]);
