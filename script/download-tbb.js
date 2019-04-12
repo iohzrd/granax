@@ -256,25 +256,7 @@ exports.install = function(callback) {
                 rimraf.sync(path.join(BIN_DIR, 'Browser'));
                 break;
               case 'darwin':
-                let torbinsdir = path.join(
-                  path.dirname(granax.tor(os.platform())),
-                  '../../../MacOS/Tor'
-                );
-                let torbins = fs.readdirSync(torbinsdir);
-                let torbinsAbsolute = torbins.map(p => {
-                  return path.join(torbinsdir, p);
-                });
-                return async.each(torbinsAbsolute, (src, next) => {
-                  ncp.ncp(src, path.join(dest, path.basename(src)), next);
-                }, (err) => {
-                  rimraf.sync(path.join(BIN_DIR, '.tbb.app'));
-                  callback(
-                    null,
-                    path.join(BIN_DIR, 'Tor', path.basename(
-                      granax.tor(os.platform())
-                    ))
-                  );
-                });
+                rimraf.sync(path.join(BIN_DIR, '.tbb.app'));
                 break;
               case 'android':
               case 'linux':

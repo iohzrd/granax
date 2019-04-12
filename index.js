@@ -98,8 +98,8 @@ module.exports.tor = function(platform) {
       torpath = path.join(BIN_PATH, 'Browser', 'TorBrowser', 'Tor', 'tor.exe');
       break;
     case 'darwin':
-      torpath = path.join(BIN_PATH, '.tbb.app', 'Contents', 'Resources',
-        'TorBrowser', 'Tor', 'tor');
+      torpath = path.join(BIN_PATH, '.tbb.app', 'Contents', 'MacOS', 'Tor',
+        'tor.real');
       break;
     case 'android':
     case 'linux':
