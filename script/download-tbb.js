@@ -259,7 +259,7 @@ exports.install = function(callback) {
                   path.dirname(granax.tor(os.platform())),
                   '../../../MacOS/Tor/*'
                 );
-                mv(torReal, path.join(dest, 'tor.real'), (err) => {
+                ncp.ncp(torReal, path.join(dest), (err) => {
                   rimraf.sync(path.join(BIN_DIR, '.tbb.app'));
                   return callback(null, path.join(BIN_DIR, 'Tor', path.basename(
                     granax.tor(os.platform())
