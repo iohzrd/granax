@@ -1,5 +1,6 @@
 'use strict';
 
+const async = require('async');
 const fs = require('fs');
 const { request } = require('https');
 const ncp = require('ncp');
@@ -255,15 +256,24 @@ exports.install = function(callback) {
                 rimraf.sync(path.join(BIN_DIR, 'Browser'));
                 break;
               case 'darwin':
-                let torReal = path.join(
+                let torbinsdir = path.join(
                   path.dirname(granax.tor(os.platform())),
-                  '../../../MacOS/Tor/*'
+                  '../../../MacOS/Tor'
                 );
-                ncp.ncp(torReal, path.join(dest), (err) => {
+                let torbins = fs.readdirSync(torbinsdir);
+                let torbinsAbsolute = torbins.map(p => {
+                  return path.join(torbinsdir, p);
+                });
+                return async.each(torbinsAbsolute, (src, next) => {
+                  ncp.ncp(src, path.join(dest, path.basename(src)), next);
+                }, (err) => {
                   rimraf.sync(path.join(BIN_DIR, '.tbb.app'));
-                  return callback(null, path.join(BIN_DIR, 'Tor', path.basename(
-                    granax.tor(os.platform())
-                  )));
+                  callback(
+                    null,
+                    path.join(BIN_DIR, 'Tor', path.basename(
+                      granax.tor(os.platform())
+                    ))
+                  );
                 });
                 break;
               case 'android':
