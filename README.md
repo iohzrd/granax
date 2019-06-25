@@ -14,9 +14,9 @@ npm install @deadcanaries/granax --save
 ```
 
 As part of the installation process, Granax will download the Tor Browser 
-Bundle local to itself and use the included Tor executable, however on 
-GNU+Linux, you may opt for Granax to use the system Tor installed using your 
-distribution's package manager by setting `GRANAX_USE_SYSTEM_TOR=1`. 
+Bundle local to itself and use the included Tor executable, however you may 
+opt for Granax to use the system Tor installed using your distribution's 
+package manager by setting `GRANAX_USE_SYSTEM_TOR=1`. 
 
 You can also tell Granax to install the latest alpha release of Tor instead of 
 the latest stable release, with `GRANAX_USE_TOR_ALPHA=1`.
