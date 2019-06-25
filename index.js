@@ -90,8 +90,23 @@ module.exports = function(options, torrcOptions) {
  * @returns {string}
  */
 module.exports.tor = function(platform) {
-  /* eslint complexity: ["error", 7] */
+  /* eslint complexity: ["error", 8] */
   let torpath = null;
+
+  /* istanbul ignore else */
+  if (process.env.GRANAX_USE_SYSTEM_TOR) {
+    try {
+      torpath = execFileSync(
+        platform === 'win32' ? 'where' : 'which',
+        ['tor']
+      ).toString().trim();
+    } catch (err) {
+      /* istanbul ignore next */
+      throw new Error('Tor is not installed');
+    }
+
+    return torpath;
+  }
 
   switch (platform) {
     case 'win32':
@@ -103,18 +118,7 @@ module.exports.tor = function(platform) {
       break;
     case 'android':
     case 'linux':
-      /* istanbul ignore else */
-      if (process.env.GRANAX_USE_SYSTEM_TOR) {
-        // NB: Use the system Tor installation on android and linux
-        try {
-          torpath = execFileSync('which', ['tor']).toString().trim();
-        } catch (err) {
-          /* istanbul ignore next */
-          throw new Error('Tor is not installed');
-        }
-      } else {
-        torpath = path.join(LD_LIBRARY_PATH, 'tor');
-      }
+      torpath = path.join(LD_LIBRARY_PATH, 'tor');
       break;
     default:
       throw new Error(`Unsupported platform "${platform}"`);

@@ -191,6 +191,13 @@ exports._unpackLinux = function(bundle, callback) {
 exports.install = function(callback) {
   let basename = null;
 
+  if (process.env.GRANAX_USE_SYSTEM_TOR) {
+    // NB: Use the system installation of Tor on android and linux
+    console.log('Skipping automatic Tor installation...');
+    console.log('Be sure to install Tor using your package manager!');
+    return;
+  }
+
   switch (os.platform()) {
     case 'win32':
       basename = '.tbb.exe';
@@ -200,12 +207,6 @@ exports.install = function(callback) {
       break;
     case 'android':
     case 'linux':
-      if (process.env.GRANAX_USE_SYSTEM_TOR) {
-        // NB: Use the system installation of Tor on android and linux
-        console.log('Skipping automatic Tor install on GNU+Linux...');
-        console.log('Be sure to install Tor using your package manager!');
-        return;
-      }
       basename = '.tbb.xz';
       break;
     default:
