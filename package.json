@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/deadcanaries/granax.git"
+    "url": "https://github.com/deadcanaries/granax.git"
   },
   "keywords": [
     "tor",
@@ -35,14 +35,14 @@
   "author": "Emery Rose Hall <emery@deadcanaries.org>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://gitlab.com/deadcanaries/granax/issues"
+    "url": "https://github.com/deadcanaries/granax/issues"
   },
-  "homepage": "https://gitlab.com/deadcanaries/granax#readme",
+  "homepage": "https://github.com/deadcanaries/granax#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.15.1",
-    "ink-docstrap": "git+https://gitlab.com/deadcanaries/docstrap.git",
+    "ink-docstrap": "git+https://github.com/deadcanaries/depends-docstrap.git",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.3",
     "mocha": "^5.2.0",
