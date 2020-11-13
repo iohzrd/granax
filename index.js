@@ -79,8 +79,6 @@ module.exports = function (options, torrcOptions) {
 
     socket.connect(port, "127.0.0.1");
   }
-
-  /* istanbul ignore next */
   process.on("exit", () => child.kill());
   child.stdout.once("data", () => setTimeout(() => connect(), 1000));
   child.on("error", (err) => controller.emit("error", err));
@@ -88,7 +86,11 @@ module.exports = function (options, torrcOptions) {
     controller.emit("error", new Error("Tor exited with code " + code));
   });
 
-  return controller;
+  return new Promise(function (resolve) {
+    controller.once("ready", () => {
+      resolve(controller);
+    });
+  });
 };
 
 /**
@@ -99,14 +101,12 @@ module.exports.tor = function (platform) {
   /* eslint complexity: ["error", 8] */
   let torpath = null;
 
-  /* istanbul ignore else */
   if (process.env.GRANAX_USE_SYSTEM_TOR) {
     try {
       torpath = execFileSync(platform === "win32" ? "where" : "which", ["tor"])
         .toString()
         .trim();
     } catch (err) {
-      /* istanbul ignore next */
       throw new Error("Tor is not installed");
     }
 

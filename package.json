@@ -1,5 +1,5 @@
 {
-  "name": "@deadcanaries/granax",
+  "name": "@iohzrd/granax",
   "version": "3.2.6",
   "description": "complete client implementation of the tor control protocol",
   "main": "index.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/deadcanaries/granax.git"
+    "url": "https://github.com/iohzrd/granax.git"
   },
   "keywords": [
     "tor",
@@ -35,13 +35,14 @@
   "author": "Emery Rose Hall <emery@deadcanaries.org>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/deadcanaries/granax/issues"
+    "url": "https://github.com/iohzrd/granax/issues"
   },
-  "homepage": "https://github.com/deadcanaries/granax#readme",
+  "homepage": "https://github.com/iohzrd/granax#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
     "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
     "ink-docstrap": "git+https://github.com/deadcanaries/depends-docstrap.git",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.6.6",

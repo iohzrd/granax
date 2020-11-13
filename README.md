@@ -1,73 +1,76 @@
-Granax
-======
+# [Granax](https://github.com/deadcanaries/granax/) with Promises
 
-Complete client implementation of the [Tor Control Protocol](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt). 
+Complete client implementation of the [Tor Control Protocol](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt).
 Control a running Tor instance from Node.js!
 
-Usage
------
+## Usage
 
 Install via NPM:
 
 ```
-npm install @deadcanaries/granax --save
+npm install @iohzrd/granax --save
 ```
 
-As part of the installation process, Granax will download the Tor Browser 
-Bundle local to itself and use the included Tor executable, however you may 
-opt for Granax to use the system Tor installed using your distribution's 
-package manager by setting `GRANAX_USE_SYSTEM_TOR=1`. 
+As part of the installation process, Granax will download the Tor Browser
+Bundle local to itself and use the included Tor executable, however you may
+opt for Granax to use the system Tor installed using your distribution's
+package manager by setting `GRANAX_USE_SYSTEM_TOR=1`.
 
-You can also tell Granax to install the latest alpha release of Tor instead of 
+You can also tell Granax to install the latest alpha release of Tor instead of
 the latest stable release, with `GRANAX_USE_TOR_ALPHA=1`.
 
 ```js
-const tor = require('@deadcanaries/granax')();
+const tor = require("@iohzrd/granax")();
 
-tor.on('ready', function() {
-  tor.createHiddenService('127.0.0.1:8080', (err, result) => {
-    console.info(`Service URL: ${result.serviceId}.onion`);
-    console.info(`Private Key: ${result.privateKey}`);
-  });
-});
+async function main() {
+  const server = http.createServer((req, res) => res.end("hello, tor!"));
+  server.listen(0, "127.0.0.1");
 
-tor.on('error', function(err) {
-  console.error(err);
-});
+  const tor = await granax();
+  const data = await tor.createHiddenServicePromise(
+    `127.0.0.1:${server.address().port}`,
+    options
+  );
+  console.log(data);
+}
+main();
 ```
 
 ### Using System Tor Package
 
-Make sure that `ControlPort=9051` (or your preferred port) is set in your 
+Make sure that `ControlPort=9051` (or your preferred port) is set in your
 `torrc`, then you may open the control socket and issue commands:
 
 ```js
-const { connect } = require('net');
-const { TorController } = require('@deadcanaries/granax');
+const { connect } = require("net");
+const { TorController } = require("@iohzrd/granax");
 const tor = new TorController(connect(9051), options);
 
-tor.on('ready', function() {
-  // party!
-});
+async function main() {
+  const tor = await granax();
+  // ...
+}
+main();
 ```
 
-> Note that if using cookie authentication, the Node.js process must have the 
-> appropriate privileges to read the cookie file. Usually, this means running 
+> Note that if using cookie authentication, the Node.js process must have the
+> appropriate privileges to read the cookie file. Usually, this means running
 > as the same user that is running Tor.
 
-Resources
----------
+## Resources
 
-* [Granax Examples](https://gitlab.com/deadcanaries/granax/tree/master/examples)
-* [Granax Documentation](https://deadcanaries.gitlab.io/granax)
-* [Tor Control Specification](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt)
-* [Tor Documentation](https://www.torproject.org/docs/documentation.html.en)
+- [Granax Examples](https://github.com/deadcanaries/granax/tree/master/examples)
+- [Granax Documentation](https://deadcanaries.github.io/granax)
+- [Tor Control Specification](https://gitweb.torproject.org/torspec.git/plain/control-spec.txt)
+- [Tor Documentation](https://www.torproject.org/docs/documentation.html.en)
 
-License
--------
+## License
 
-Granax - Complete client implementation of the Tor Control Protocol  
+Granax - Complete client implementation of the Tor Control Protocol
+
 Copyright (C) 2019 Dead Canaries, Inc.
+
+Copyright (C) 2020 iohzrd
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -76,10 +79,8 @@ by the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
+along with this program. If not, see <http://www.gnu.org/licenses/>.
