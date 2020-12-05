@@ -1,5 +1,5 @@
 {
-  "name": "@iohzrd/granax",
+  "name": "granax",
   "version": "3.2.6",
   "description": "complete client implementation of the tor control protocol",
   "main": "index.js",
