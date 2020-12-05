@@ -12,15 +12,6 @@ const { platform } = require("os");
 const { Socket } = require("net");
 const { readFileSync } = require("fs");
 
-const BIN_PATH = path.join(__dirname, "bin");
-const LD_LIBRARY_PATH = path.join(
-  BIN_PATH,
-  "tor-browser_en-US",
-  "Browser",
-  "TorBrowser",
-  "Tor"
-);
-
 /**
  * Returns a {@link TorController} with automatically constructed socket
  * to the local Tor bundle executable
@@ -29,6 +20,8 @@ const LD_LIBRARY_PATH = path.join(
  * @returns {TorController}
  */
 module.exports = function (options, torrcOptions) {
+  const BIN_PATH = path.join(__dirname, "bin");
+
   let socket = new Socket();
   let controller = new module.exports.TorController(socket, options);
   let [torrc, datadir] = module.exports.torrc(torrcOptions);
@@ -99,6 +92,15 @@ module.exports = function (options, torrcOptions) {
  * @returns {string}
  */
 module.exports.tor = function (platform) {
+  const BIN_PATH = path.join(__dirname, "bin");
+  const LD_LIBRARY_PATH = path.join(
+    BIN_PATH,
+    "tor-browser_en-US",
+    "Browser",
+    "TorBrowser",
+    "Tor"
+  );
+
   /* eslint complexity: ["error", 8] */
   let torpath = null;
 
