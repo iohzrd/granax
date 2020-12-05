@@ -45,6 +45,7 @@ module.exports = function (options, torrcOptions) {
   let args = process.env.GRANAX_TOR_ARGS
     ? process.env.GRANAX_TOR_ARGS.split(" ")
     : [];
+  console.log(`spawning tor from path: ${tor}`);
   let child = spawn(tor, ["-f", torrc].concat(args), {
     cwd: BIN_PATH,
     env,
