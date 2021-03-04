@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "async": "^3.2.0",
-    "latest-torbrowser-version": "^2.0.3",
+    "latest-torbrowser-version": "git://github.com/iohzrd/latest-torbrowser-version.git",
     "merge": "^2.1.0",
     "mkdirp": "^1.0.4",
     "mv": "^2.1.1",
