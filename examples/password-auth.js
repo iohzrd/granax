@@ -4,15 +4,15 @@
  * @example
  */
 
-'use strict';
+"use strict";
 
 // By default, the TorController will automatically authenticate with the
 // control port via SAFECOOKIE is supported, else COOKIE.
 //
 // If you would prefer to authenticate with a password (set in your torrc),
 // you may instruct granax to not automatically authenticate.
-const { TorController } = require('..');
-const { connect } = require('net');
+const { TorController } = require("..");
+const { connect } = require("net");
 const tor = new TorController(connect(9051), { authOnConnect: false });
 
 // At this point, we have an open socket to the control port, but we are not
@@ -25,11 +25,11 @@ const tor = new TorController(connect(9051), { authOnConnect: false });
 //
 // Password authentication also requires the password be wrapped in double
 // quotes!
-tor.authenticate('"mysupersecretpassword"', function(err) {
+tor.authenticate('"mysupersecretpassword"', function (err) {
   if (err) {
     console.error(err);
   } else {
-    console.info('authenticated with password!');
+    console.info("authenticated with password!");
   }
 });
 

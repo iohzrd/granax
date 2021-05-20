@@ -3,18 +3,18 @@
  * @example
  */
 
-'use strict';
+"use strict";
 
-const granax = require('..');
+const granax = require("..");
 const tor = granax();
 
-tor.on('ready', function() {
-  tor.getInfo('net/listeners/socks', (err, result) => {
-    let port = parseInt(result.split('"').join('').split(':')[1]);
+tor.on("ready", function () {
+  tor.getInfo("net/listeners/socks", (err, result) => {
+    let port = parseInt(result.split('"').join("").split(":")[1]);
     console.log(`TorSocks listening on ${port}!`);
   });
 });
 
-tor.on('error', function(err) {
+tor.on("error", function (err) {
   console.error(err);
 });
